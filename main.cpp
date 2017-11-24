@@ -4,9 +4,9 @@
 #include<string>
 #include<fstream> //make a fstream that inputs after each game who won, the player or the computer
 /* TO DOES:
-** Make a function that cheaks if anyone has won;
-** Make it so that the computers ship cant be seen by the player;
-*/
+ ** Make a function that cheaks if anyone has won; (DONE)
+ ** Make it so that the computers ship cant be seen by the player;
+ */
 
 using namespace std;
 
@@ -20,36 +20,58 @@ const char IS_WATER = '_';
 const char IS_MISSED = 'O';
 const char IS_SHIP = 'S';
 
-char PLAYER_BOARD[NUM_OF_ROWS][NUM_OF_COLS];
-char COMPUTERS_BOARD[NUM_OF_ROWS][NUM_OF_COLS];
+//char PLAYER_BOARD[NUM_OF_ROWS][NUM_OF_COLS];
+//char COMPUTERS_BOARD[NUM_OF_ROWS][NUM_OF_COLS];
 
 bool readyToPlay(string &);
 void displayBoard(char  array[NUM_OF_ROWS][NUM_OF_COLS], string);
 void placeYourShips(char array[NUM_OF_ROWS][NUM_OF_COLS], string);
-void computerRandomGenerateShips();
+void computerRandomGenerateShips(char array[NUM_OF_ROWS][NUM_OF_COLS]);
 void playerAttack(char array[NUM_OF_ROWS][NUM_OF_COLS]);
 void computerRandomGeneratedAttack(char array[NUM_OF_ROWS][NUM_OF_COLS], string);
-
+int numberOfShips(char array[NUM_OF_ROWS][NUM_OF_COLS]);
 
 int main()
 {
         srand( time (NULL) );
+        char PLAYER_BOARD[NUM_OF_ROWS][NUM_OF_COLS];
+        char COMPUTERS_BOARD[NUM_OF_ROWS][NUM_OF_COLS];
         string Player, Computer;
         bool play;
-        int row, col;
+        int player, cpu;
         play = readyToPlay(Player);
         if(play == true)
         {
                 displayBoard(PLAYER_BOARD, Player);
                 displayBoard(COMPUTERS_BOARD, "Computer");
                 placeYourShips(PLAYER_BOARD, Player);
-                computerRandomGenerateShips();
+                computerRandomGenerateShips(COMPUTERS_BOARD);
 
-                 for(int r = 0; r < MAX_NUM_OF_GUESSES; r++)
-                 {
+                for(int r = 0; r < MAX_NUM_OF_GUESSES; r++)
+                {
                         playerAttack(COMPUTERS_BOARD);
                         computerRandomGeneratedAttack(PLAYER_BOARD, Player);
-                 }
+                        player = numberOfShips(PLAYER_BOARD);
+                        cout<<"\nYou have "<<player<<" Ships left!\n";
+                        cpu = numberOfShips(COMPUTERS_BOARD);
+                        cout<<"\nThe Computer has "<<cpu<<" Ships left!\n";
+                        if( player == 0)
+                        {
+                                cout<<"\n*=======================*\n";
+                                cout<<"*========You Lost=======*\n";
+                                cout<<"*=Better Luck Next Time=*\n";
+                                cout<<"*=======================*\n";
+                                break;
+                        }
+                        else if( cpu == 0)
+                        {
+                                cout<<"\n*================================*\n";
+                                cout<<"*=============You Won============*\n";
+                                cout<<"*=You Sunk All The Enemys Ships!=*\n";
+                                cout<<"*================================*\n";
+                                break;
+                        }
+                }
 
         }
         return 0;
@@ -86,7 +108,7 @@ void placeYourShips(char array[NUM_OF_ROWS][NUM_OF_COLS], string name)
         {
                 cout<<"Please enter the location you would like to put your ships (exp 2 3) (dont forget the max num of ships is 8!)\n";
                 cin >> row >> col ;
-                if(row > 0 && row <= NUM_OF_ROWS && col > 0 && col <= NUM_OF_COLS)
+                if((row > 0 && row <= NUM_OF_ROWS) && (col > 0 && col <= NUM_OF_COLS))
                 {
                         if(array[row][col] == IS_WATER)
                         {
@@ -109,7 +131,7 @@ void placeYourShips(char array[NUM_OF_ROWS][NUM_OF_COLS], string name)
         {
                 for (int c = 0; c < NUM_OF_COLS; c++)
                 {
-                        cout<<PLAYER_BOARD[r][c]<<"  ";
+                        cout<<array[r][c]<<"  ";
                 }
                 cout<<endl;
         }
@@ -161,16 +183,16 @@ void displayBoard(char  array[NUM_OF_ROWS][NUM_OF_COLS], string name)
 
 }
 
-void computerRandomGenerateShips()
+void computerRandomGenerateShips(char array[NUM_OF_ROWS][NUM_OF_COLS])
 {
         int r, c, k = 0;
         while(k < MAX_NUM_OF_SHIPS)
         {
                 r = rand() % NUM_OF_ROWS;
                 c = rand() % NUM_OF_COLS;
-                if(COMPUTERS_BOARD[r][c] == IS_WATER)
+                if(array[r][c] == IS_WATER)
                 {
-                        COMPUTERS_BOARD[r][c] = IS_SHIP;
+                        array[r][c] = IS_SHIP;
                         k++;
                 }
         }
@@ -180,7 +202,7 @@ void computerRandomGenerateShips()
         {
                 for (int c = 0; c < NUM_OF_COLS; c++)
                 {
-                        cout<<COMPUTERS_BOARD[r][c]<<"  ";
+                        cout<<array[r][c]<<"  ";
                 }
                 cout<<endl;
         }
@@ -193,18 +215,22 @@ void playerAttack(char array[NUM_OF_ROWS][NUM_OF_COLS])
         do{
                 cout<<"Where would you like to attack? (exp 2 2)\n";
                 cin >> rw >> cl;
-                if( (rw > 0 || rw <= NUM_OF_ROWS) && (cl > 0 || cl <= NUM_OF_COLS) )
+                if( (rw > 0 && rw <= NUM_OF_ROWS) && (cl > 0 && cl <= NUM_OF_COLS) )
                 {
                         k = 0;
                         if(array[rw][cl] == IS_WATER)
                         {
                                 array[rw][cl] = IS_MISSED;
-                                cout<<"You missed!\n";
+                                cout<<"\n==================================\n";
+                                cout<<"====You Missed The Emeny Ship!====\n";
+                                cout<<"==================================\n";
                         }
                         else if(array[rw][cl] == IS_SHIP)
                         {
                                 array[rw][cl] = IS_HIT;
-                                cout<<"You Hit!\n";
+                                cout<<"\n==================================\n";
+                                cout<<"======You Hit An Emeny Ship!======\n";
+                                cout<<"==================================\n";
                         }
                         else if(array[rw][cl] == IS_HIT)
                         {
@@ -243,31 +269,31 @@ void computerRandomGeneratedAttack(char array[NUM_OF_ROWS][NUM_OF_COLS], string 
         do{
                 r = rand() % NUM_OF_ROWS;
                 c = rand() % NUM_OF_COLS;
-                if( (r > 0 || r <= NUM_OF_ROWS) && (c > 0 && c <= NUM_OF_COLS) )
+                if( (r > 0 && r <= NUM_OF_ROWS) && (c > 0 && c <= NUM_OF_COLS) )
                 {
-                    k = 0;
-                    if(array[r][c] == IS_WATER)
-                    {
-                        array[r][c] = IS_MISSED;
-                        cout<<"The computer missed!\n";
-                    }
-                    else if(array[r][c] == IS_SHIP)
-                    {
-                        array[r][c] = IS_HIT;
-                        cout<<"The computer Hit!\n";
-                    }
-                    else if(array[r][c] == IS_HIT)
-                    {
-                        k = 1;
-                    }            
-                    else if(array[r][c] == IS_MISSED)
-                    {
-                        k = 1;
-                    }
+                        k = 0;
+                        if(array[r][c] == IS_WATER)
+                        {
+                                array[r][c] = IS_MISSED;
+                                cout<<"The computer missed!\n";
+                        }
+                        else if(array[r][c] == IS_SHIP)
+                        {
+                                array[r][c] = IS_HIT;
+                                cout<<"The computer Hit!\n";
+                        }
+                        else if(array[r][c] == IS_HIT)
+                        {
+                                k = 1;
+                        }            
+                        else if(array[r][c] == IS_MISSED)
+                        {
+                                k = 1;
+                        }
                 }
                 else
                 {
-                    k = 1;
+                        k = 1;
                 }
         }while( (array[r][c] != IS_HIT && array[r][c] != IS_MISSED) || k == 1);
 
@@ -280,6 +306,22 @@ void computerRandomGeneratedAttack(char array[NUM_OF_ROWS][NUM_OF_COLS], string 
                 }
                 cout<<endl;
         }
+}
+
+int numberOfShips(char array[NUM_OF_ROWS][NUM_OF_COLS])
+{
+        int k = 0;
+
+        for(int r = 0; r < NUM_OF_ROWS; r++)
+        {
+                for(int c = 0; c < NUM_OF_COLS; c++)
+                {
+                        if(array[r][c] == IS_SHIP)
+                                k++;
+                }
+        }
+
+        return k;
 }
 
 
