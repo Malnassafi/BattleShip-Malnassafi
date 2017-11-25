@@ -34,11 +34,20 @@ int numberOfShips(char array[NUM_OF_ROWS][NUM_OF_COLS]);
 int main()
 {
         srand( time (NULL) );
+        ifstream inFile;
+        ofstream outFile;
         char PLAYER_BOARD[NUM_OF_ROWS][NUM_OF_COLS];
         char COMPUTERS_BOARD[NUM_OF_ROWS][NUM_OF_COLS];
-        string Player, Computer;
+        string Player, line;
         bool play;
         int player, cpu;
+
+        inFile.open("battleship.txt");
+        while(getline(inFile,line) && line != "")
+        {
+                cout<<line<<" \n";
+        }
+        inFile.close();
         play = readyToPlay(Player);
         if(play == true)
         {
@@ -61,6 +70,9 @@ int main()
                                 cout<<"*========You Lost=======*\n";
                                 cout<<"*=Better Luck Next Time=*\n";
                                 cout<<"*=======================*\n";
+                                outFile.open("battleship.txt");
+                                outFile<<"The Computer Won Last Game!\n";
+                                outFile.close();
                                 break;
                         }
                         else if( cpu == 0)
@@ -69,6 +81,9 @@ int main()
                                 cout<<"*=============You Won============*\n";
                                 cout<<"*=You Sunk All The Enemys Ships!=*\n";
                                 cout<<"*================================*\n";
+                                outFile.open("battleship.txt");
+                                outFile<<Player<<" Won Last Game!\n";
+                                outFile.close();
                                 break;
                         }
                 }
@@ -80,11 +95,11 @@ int main()
 bool readyToPlay(string & name)
 {   
         char cheak;
-        cout<<"\n********************************\n";
-        cout<<"********************************\n";
-        cout<<"*********BattleShipGame*********\n";
-        cout<<"********************************\n";
-        cout<<"********************************\n";
+        cout<<"\n===========Welcome==============\n";
+        cout<<"================To==============\n";
+        cout<<"=========BattleShipGame=========\n";
+        cout<<"==============Brave=============\n";
+        cout<<"==============Sailer============\n";
         cout<<"\n The game goes as followes:\n Whoever destroyes all the others ships win!\n";
         cout<<"_ stands for the water,\n S stands for your ships,\n ! stands for the ships that you or the Computer hit,\n O stands for every time you or the Computer misses \n"; 
         cout<<"ARE YOU READY TO DESTROY YOUR ENEMY? Y/N\n";
@@ -134,7 +149,7 @@ void placeYourShips(char array[NUM_OF_ROWS][NUM_OF_COLS], string name)
                         cout<<array[r][c]<<"  ";
                 }
                 cout<<endl;
-        }
+        } 
 }
 
 void displayBoard(char  array[NUM_OF_ROWS][NUM_OF_COLS], string name)
@@ -222,30 +237,30 @@ void playerAttack(char array[NUM_OF_ROWS][NUM_OF_COLS])
                         {
                                 array[rw][cl] = IS_MISSED;
                                 cout<<"\n==================================\n";
-                                cout<<"====You Missed The Emeny Ship!====\n";
+                                cout<<"====You Missed The Enemy ship!====\n";
                                 cout<<"==================================\n";
                         }
                         else if(array[rw][cl] == IS_SHIP)
                         {
                                 array[rw][cl] = IS_HIT;
                                 cout<<"\n==================================\n";
-                                cout<<"======You Hit An Emeny Ship!======\n";
+                                cout<<"======You Hit The Enemy Ship!=====\n";
                                 cout<<"==================================\n";
                         }
                         else if(array[rw][cl] == IS_HIT)
                         {
                                 k = 1;
-                                cout<<"You already hit that ship! Please try again\n";
+                                cerr<<"You already hit that ship! Please try again\n";
                         }
                         else if(array[rw][cl] == IS_MISSED)
                         {
                                 k = 1;
-                                cout<<"You already missed on that location! Please try again\n";
+                                cerr<<"You already missed on that location! Please try again\n";
                         }
                 }
                 else
                 {
-                        cout<<"The location you choose is out of bounds! Please choose another location within the gameboard\n";
+                        cerr<<"The location you choose is out of bounds! Please choose another location within the gameboard\n";
                         k = 1;
                 }
         }while( (array[rw][cl] != IS_HIT && array[rw][cl] != IS_MISSED) || k == 1);
@@ -275,12 +290,16 @@ void computerRandomGeneratedAttack(char array[NUM_OF_ROWS][NUM_OF_COLS], string 
                         if(array[r][c] == IS_WATER)
                         {
                                 array[r][c] = IS_MISSED;
-                                cout<<"The computer missed!\n";
+                                cout<<"\n==================================\n";
+                                cout<<"========The Computer Missed!======\n";
+                                cout<<"==================================\n";
                         }
                         else if(array[r][c] == IS_SHIP)
                         {
                                 array[r][c] = IS_HIT;
-                                cout<<"The computer Hit!\n";
+                                cout<<"\n==================================\n";
+                                cout<<"====The Computer Hit Your Ship!===\n";
+                                cout<<"==================================\n";
                         }
                         else if(array[r][c] == IS_HIT)
                         {
