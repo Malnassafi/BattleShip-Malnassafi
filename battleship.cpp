@@ -8,15 +8,6 @@ using namespace std;
 
 board::board()
 { 
-        NUM_OF_ROWS = 10;
-        NUM_OF_COLS = 10;
-        MAX_NUM_OF_SHIPS = 8;
-
-        IS_HIT = '!';
-        IS_WATER = '_';
-        IS_MISSED = 'O';
-        IS_SHIP = 'S';
-        
         PLAYER_BOARD[0][0] = '*';
         //Coloums
         PLAYER_BOARD[0][1] = '1';
@@ -123,15 +114,18 @@ int board::numOfShips(char array[NUM_OF_ROWS][NUM_OF_COLS])
         return k;
 }
 
-int numberOfShips(string cheak)
+int board::numberOfShips(string cheak)
 {
+        int number;
         if(cheak == playerName)
         {
-                numOfShips(PLAYER_BOARD);
+                number =  numOfShips(PLAYER_BOARD);
+                return number;
         }
         else if(cheak == computer)
         {
-                numOfShips(COMPUTERS_BOARD);
+                number = numOfShips(COMPUTERS_BOARD);
+                return number;
         }
 }
 
@@ -211,7 +205,7 @@ void board::computerRandomGenerateShips(char array[NUM_OF_ROWS][NUM_OF_COLS])
 void board::playerAttack(char array[NUM_OF_ROWS][NUM_OF_COLS])
 {
 
-        nt rw, cl, k;
+        int rw, cl, k;
         cout<<"\n\nIt's your turn brave sailer!\n\n";
         do{
                 cout<<"Where would you like to attack? (exp 2 2)\n";
