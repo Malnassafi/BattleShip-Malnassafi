@@ -40,9 +40,9 @@ int main()
                 for(int r = 0; r < MAX_NUM_OF_GUESSES; r++)
                 {       
                         Player.attack(player);
-                        Player.displayBoard(player);
-                        Player.attack(Cpu);
                         Player.displayBoard(Cpu);
+                        Player.attack(Cpu);
+                        Player.displayBoard(player);
                         gamer = Player.numberOfShips(player);
                         cout<<"\nYou have "<<gamer<<" Ships left!\n";
                         cpu = Player.numberOfShips(Cpu);
