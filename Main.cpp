@@ -7,7 +7,7 @@
 
 using namespace std;
 
-const int MAX_NUM_OF_GUESSES = 81;
+const int MAX_NUM_OF_GUESSES = NUM_OF_ROWS * NUM_OF_COLS;
 
 bool readyToPlay(string &);
 
