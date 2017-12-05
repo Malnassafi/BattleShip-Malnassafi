@@ -72,7 +72,37 @@ board::board()
                 }
         }
 
+        COMPUTER_DISPLAY_BOARD[0][0] = '*';
+        //Coloums
+        COMPUTER_DISPLAY_BOARD[0][1] = '1';
+        COMPUTER_DISPLAY_BOARD[0][2] = '2';
+        COMPUTER_DISPLAY_BOARD[0][3] = '3';
+        COMPUTER_DISPLAY_BOARD[0][4] = '4';
+        COMPUTER_DISPLAY_BOARD[0][5] = '5';
+        COMPUTER_DISPLAY_BOARD[0][6] = '6';
+        COMPUTER_DISPLAY_BOARD[0][7] = '7';
+        COMPUTER_DISPLAY_BOARD[0][8] = '8';
+        COMPUTER_DISPLAY_BOARD[0][9] = '9';
 
+        //Rows
+        COMPUTER_DISPLAY_BOARD[1][0] = '1';
+        COMPUTER_DISPLAY_BOARD[2][0] = '2';
+        COMPUTER_DISPLAY_BOARD[3][0] = '3';
+        COMPUTER_DISPLAY_BOARD[4][0] = '4';
+        COMPUTER_DISPLAY_BOARD[5][0] = '5';
+        COMPUTER_DISPLAY_BOARD[6][0] = '6';
+        COMPUTER_DISPLAY_BOARD[7][0] = '7';
+        COMPUTER_DISPLAY_BOARD[8][0] = '8';
+        COMPUTER_DISPLAY_BOARD[9][0] = '9';
+
+
+        for (int r = 1; r < NUM_OF_ROWS; r++)
+        {                               
+                for (int c = 1; c < NUM_OF_COLS; c++)
+                {     
+                        COMPUTER_DISPLAY_BOARD[r][c] = IS_WATER;
+                }                       
+        }
 }
 
 void board::displayGameBoard( char array[NUM_OF_ROWS][NUM_OF_COLS] , string name )
@@ -92,11 +122,11 @@ void board::displayBoard(string cheak)
 {
         if(cheak == playerName)
         {
-                displayGameBoard( PLAYER_BOARD , playerName );
+                displayGameBoard(PLAYER_BOARD, playerName);
         }
         else if(cheak == computer)
         {
-                displayGameBoard( COMPUTERS_BOARD , computer );
+                displayGameBoard( COMPUTER_DISPLAY_BOARD , computer );
         }
 }
 int board::numOfShips(char array[NUM_OF_ROWS][NUM_OF_COLS])
@@ -216,13 +246,16 @@ void board::playerAttack(char array[NUM_OF_ROWS][NUM_OF_COLS])
                         if(array[rw][cl] == IS_WATER)
                         {
                                 array[rw][cl] = IS_MISSED;
+                                COMPUTER_DISPLAY_BOARD[rw][cl] = IS_MISSED;
                                 cout<<"\n==================================\n";
                                 cout<<"====You Missed The Enemy ship!====\n";
                                 cout<<"==================================\n";
+
                         }
                         else if(array[rw][cl] == IS_SHIP)
                         {
                                 array[rw][cl] = IS_HIT;
+                                COMPUTER_DISPLAY_BOARD[rw][cl] = IS_HIT;
                                 cout<<"\n==================================\n";
                                 cout<<"======You Hit The Enemy Ship!=====\n";
                                 cout<<"==================================\n";
