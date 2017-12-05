@@ -21,11 +21,11 @@ int main()
         bool play;
         int gamer, cpu;
         string Cpu = "Computer";
-        
+
         inFile.open("battleship.txt");
         while(getline(inFile,line) && line != "")
         {       
-                cout<<line<<" \n";
+                cout<<"\n\n\n\n\n "<<line<<" \n\n\n\n\n";
         }
         inFile.close();
         play = readyToPlay(player);
@@ -36,6 +36,8 @@ int main()
                 Player.displayBoard(Cpu);
                 Player.placeShips(player);
                 Player.placeShips(Cpu);
+                Player.displayBoard(player);
+                Player.displayBoard(Cpu);
                 
                 for(int r = 0; r < MAX_NUM_OF_GUESSES; r++)
                 {       
