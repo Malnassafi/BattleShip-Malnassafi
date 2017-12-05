@@ -25,7 +25,8 @@ class board
                 
                 char PLAYER_BOARD[NUM_OF_ROWS][NUM_OF_COLS];
                 char COMPUTERS_BOARD[NUM_OF_ROWS][NUM_OF_COLS];
-                
+                char COMPUTER_DISPLAY_BOARD[NUM_OF_ROWS][NUM_OF_COLS];
+
                 void placeYourShips(char array[NUM_OF_ROWS][NUM_OF_COLS]);
                 void computerRandomGenerateShips(char array[NUM_OF_ROWS][NUM_OF_COLS]);
                 void playerAttack(char array[NUM_OF_ROWS][NUM_OF_COLS]);
