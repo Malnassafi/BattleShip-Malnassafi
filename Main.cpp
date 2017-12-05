@@ -7,7 +7,7 @@
 
 using namespace std;
 
-const int MAX_NUM_OF_GUESSES = NUM_OF_ROWS * NUM_OF_COLS;
+const int MAX_NUM_OF_GUESSES = (NUM_OF_ROWS - 1) * (NUM_OF_COLS - 1);
 
 bool readyToPlay(string &);
 
@@ -22,6 +22,7 @@ int main()
         int gamer, cpu;
         string Cpu = "Computer";
 
+        cout<<MAX_NUM_OF_GUESSES<<endl;
         inFile.open("battleship.txt");
         while(getline(inFile,line) && line != "")
         {       
