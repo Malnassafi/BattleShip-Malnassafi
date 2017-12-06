@@ -14,5 +14,5 @@ BattleShip is a board game where you play against a computer. First you place yo
 # File I/O:
 *
 # Class:
-*
+* Board class: [bitmap.h on line 20](/battleship.h#L20)
 
