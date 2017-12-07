@@ -8,6 +8,8 @@ using namespace std;
 
 board::board()
 { 
+        computer = "Computer";
+
         PLAYER_BOARD[0][0] = '*';
         //Coloums
         PLAYER_BOARD[0][1] = '1';
@@ -118,13 +120,13 @@ void board::displayGameBoard( char array[NUM_OF_ROWS][NUM_OF_COLS] , string name
         }
 }
 
-void board::displayBoard(string cheak)
+void board::displayBoard(string check)
 {
-        if(cheak == playerName)
+        if(check == playerName)
         {
                 displayGameBoard(PLAYER_BOARD, playerName);
         }
-        else if(cheak == computer)
+        else if(check == computer)
         {
                 displayGameBoard( COMPUTER_DISPLAY_BOARD , computer );
         }
@@ -144,15 +146,15 @@ int board::numOfShips(char array[NUM_OF_ROWS][NUM_OF_COLS])
         return k;
 }
 
-int board::numberOfShips(string cheak)
+int board::numberOfShips(string check)
 {
         int number;
-        if(cheak == playerName)
+        if(check == playerName)
         {
                 number =  numOfShips(PLAYER_BOARD);
                 return number;
         }
-        else if(cheak == computer)
+        else if(check == computer)
         {
                 number = numOfShips(COMPUTERS_BOARD);
                 return number;
@@ -162,28 +164,27 @@ int board::numberOfShips(string cheak)
 void board::setName(string name)
 {
         playerName = name;
-        computer = "Computer";
 }
 
-void board::attack(string cheak)
+void board::attack(string check)
 {
-        if(cheak == playerName)
+        if(check == playerName)
         {
                 playerAttack(COMPUTERS_BOARD);
         }
-        else if(cheak == computer)
+        else if(check == computer)
         {
                 computerRandomGeneratedAttack(PLAYER_BOARD);
         }
 }
 
-void board::placeShips(string cheak)
+void board::placeShips(string check)
 {
-        if(cheak == playerName)
+        if(check == playerName)
         {
                 placeYourShips(PLAYER_BOARD);
         }
-        else if(cheak == computer)
+        else if(check == computer)
         {
                 computerRandomGenerateShips(COMPUTERS_BOARD);
         }
