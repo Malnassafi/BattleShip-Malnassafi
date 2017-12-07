@@ -25,8 +25,8 @@ BattleShip is a board game where you play against a computer. First you place yo
 * In this section all the functioned are numbered, so in the prototype section if its number 1 then its gana be the same function in the     definition section numbered as 1 etc.
 
 * Function Prototypes :
-                     * bool function's :
-                                       * 1 [main.cpp on line 12](/main.cpp#L12) & 2 [main.cpp on line 13](/main.cpp#L12)
+*                      bool function's :
+*                                        1 [main.cpp on line 12](/main.cpp#L12) & 2 [main.cpp on line 13](/main.cpp#L12)
                      * int function's :
                                        * 3  [battleship.h on line 35](/battleship.h#L35) & 4 [battleship.h on line 39](/battleship.h#L39)
                      * void function's :
