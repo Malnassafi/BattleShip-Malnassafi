@@ -41,23 +41,4 @@ class board
                 void attack(string);
                 void placeShips(string);
 };
-
-/*class player
-  {
-  private:
-  string playerName; 
-  board gamer;
-
-  void placeYourShips(char array[NUM_OF_ROWS][NUM_OF_COLS], string);
-  void computerRandomGenerateShips(char array[NUM_OF_ROWS][NUM_OF_COLS]);
-  void playerAttack(char array[NUM_OF_ROWS][NUM_OF_COLS]);
-  void computerRandomGeneratedAttack(char array[NUM_OF_ROWS][NUM_OF_COLS], string);
-  public:
-  void setName(string ); // take the name from the main.cpp and change the playerName to it
-  void attack(string);
-  void placeShips(string);i
-//we can call the board inside player and not call it inside int main
-//we can 
-
-}; */
 #endif
