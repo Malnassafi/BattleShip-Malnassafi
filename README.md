@@ -6,9 +6,17 @@ BattleShip is a board game where you play against a computer. First you place yo
 * Ask user: [battleship.cpp lines 198 & 199](/battleship.cpp#L198) where he would like to place his ships.
 * Ask user: [battleship.cpp lines 242 & 243](/battleship.cpp#L242) where he would like to attack.
 # Control flow:
-* 
-# Iteration:
+* If : [main.cpp on line 31](/main.cpp#L31) runs through the if statement if the player wants to play.
+* If & else : [main.cpp on lines 74 & 80](/main.cpp#L74) runs the if statement if the player wants to if not it will run the else statement.
+* If, else if & else: [main.cpp on lines 89, 100 & 111](/main.cpp#L89) it will run the if statement if the player has 0 ships left or the else if statement if the computer has 0 ships left or the else statement if niether of them were true.
+* If & else if : [battleship.cpp on lines 125 & 129](/battleship.cpp#L125) it would check the string, if it was the player it would run the if statement and if it was the computer it would run the else if statement.
+* If & else if : [battleship.cpp on lines 152 & 157](/battleship.cpp#L152) it would check the string, if it was the player it would run the if statement and if it was the computer it would run the else if statement.
+* If & else if : [battleship.cpp on lines 171 & 175](/battleship.cpp#L171) it would check the string, if it was the player it would run the if statement and if it was the computer it would run the else if statement.
+** If & else if : [battleship.cpp on lines 183 & 187](/battleship.cpp#L183) it would check the string, if it was the player it would run the if statement and if it was the computer it would run the else if statement.
 *
+*
+# Iteration:
+* 
 # Data structures: 
 *
 # Functions:
