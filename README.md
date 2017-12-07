@@ -38,7 +38,9 @@ BattleShip is a board game where you play against a computer. First you place yo
                                       
 * Functin Definitons :
                       bool funtion's : 
-                                       1 [main.cpp on line
+                                       1 [main.cpp on line 62](/main.cpp#L62) & 2 [main.cpp on line 86](/main.cpp#L86)
+                      int function's :
+                                       3 [battleship on line  
                                         
                       
 * Pass-by-refrence: [main.cpp on line 82](/main.cpp#L62)
