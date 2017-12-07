@@ -15,7 +15,8 @@ BattleShip is a board game where you play against a computer. First you place yo
 * Pass-by-refrence: [main.cpp on line 82](/main.cpp#L62)
 *
 # File I/O:
-*
+* [main.cpp on lines 24-29](/main.cpp#L24) file output where it outputs who won last game, the player or the computer.
+* [main.cpp on line 95-97 & 106-108](/main.cpp#L95) file input where it saves who won the computer or the player.
 # Class:
 * Board class: [bitmap.h on line 20](/battleship.h#L20)
 
