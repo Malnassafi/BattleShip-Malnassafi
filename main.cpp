@@ -1,12 +1,9 @@
+//#include"battleship.h"
 #include<iostream>
 #include<ctime>
 #include<cstdlib>
 #include<string>
-#include<fstream> //make a fstream that inputs after each game who won, the player or the computer
-/* TO DOES:
- ** Make a function that cheaks if anyone has won; (DONE)
- ** Make it so that the computers ship cant be seen by the player;
- */
+#include<fstream>
 
 using namespace std;
 
@@ -20,17 +17,14 @@ const char IS_WATER = '_';
 const char IS_MISSED = 'O';
 const char IS_SHIP = 'S';
 
-//char PLAYER_BOARD[NUM_OF_ROWS][NUM_OF_COLS];
-//char COMPUTERS_BOARD[NUM_OF_ROWS][NUM_OF_COLS];
-
 bool readyToPlay(string &);
 void displayBoard(char  array[NUM_OF_ROWS][NUM_OF_COLS], string);
-void placeYourShips(char array[NUM_OF_ROWS][NUM_OF_COLS], string);
-void computerRandomGenerateShips(char array[NUM_OF_ROWS][NUM_OF_COLS]);
-void playerAttack(char array[NUM_OF_ROWS][NUM_OF_COLS]);
-void computerRandomGeneratedAttack(char array[NUM_OF_ROWS][NUM_OF_COLS], string);
-int numberOfShips(char array[NUM_OF_ROWS][NUM_OF_COLS]);
-
+  void placeYourShips(char array[NUM_OF_ROWS][NUM_OF_COLS], string);
+  void computerRandomGenerateShips(char array[NUM_OF_ROWS][NUM_OF_COLS]);
+  void playerAttack(char array[NUM_OF_ROWS][NUM_OF_COLS]);
+  void computerRandomGeneratedAttack(char array[NUM_OF_ROWS][NUM_OF_COLS], string);
+  int numberOfShips(char array[NUM_OF_ROWS][NUM_OF_COLS]);
+  in classes! 
 int main()
 {
         srand( time (NULL) );
@@ -342,22 +336,3 @@ int numberOfShips(char array[NUM_OF_ROWS][NUM_OF_COLS])
 
         return k;
 }
-
-
-//Initialize default variables
-//Create game board
-
-//Loop till all ships are placed
-//Draw board
-//A player places ships
-// Toggle to next player
-
-//Game Loop Start
-//Player X inputs valid attack grid
-// Check to see if attack is a hit
-// Remove/add damage to hit ships
-// Redraw game board
-// Check to see if game is over
-// If game over - exit loop/end program
-// Toggle next player's turn
-//Game Loop Return
