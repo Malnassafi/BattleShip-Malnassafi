@@ -10,19 +10,17 @@ using namespace std;
 const int MAX_NUM_OF_GUESSES = (NUM_OF_ROWS - 1) * (NUM_OF_COLS - 1);
 
 bool readyToPlay(string &);
+bool cheakWinner(int, int, string);
 
 int main()
 {
         srand( time (NULL) );
         board Player;
         ifstream inFile;
-        ofstream outFile;
-        string player, line;
-        bool play;
+        string player, line, Cpu = "Computer";
+        bool play, cheaker;
         int gamer, cpu;
-        string Cpu = "Computer";
 
-        cout<<MAX_NUM_OF_GUESSES<<endl;
         inFile.open("battleship.txt");
         while(getline(inFile,line) && line != "")
         {       
@@ -39,7 +37,7 @@ int main()
                 Player.placeShips(Cpu);
                 Player.displayBoard(player);
                 Player.displayBoard(Cpu);
-                
+
                 for(int r = 0; r < MAX_NUM_OF_GUESSES; r++)
                 {       
                         Player.attack(player);
@@ -50,30 +48,12 @@ int main()
                         cout<<"\nYou have "<<gamer<<" Ships left!\n";
                         cpu = Player.numberOfShips(Cpu);
                         cout<<"\nThe Computer has "<<cpu<<" Ships left!\n";
-                        if( gamer == 0)
-                        {       
-                                cout<<"\n*=======================*\n";
-                                cout<<"*========You Lost=======*\n";
-                                cout<<"*=Better Luck Next Time=*\n";
-                                cout<<"*=======================*\n";
-                                outFile.open("battleship.txt");
-                                outFile<<"The Computer Won Last Game!\n";
-                                outFile.close();
-                                break;
-                        }
-                        else if( cpu == 0)
-                        {       
-                                cout<<"\n*================================*\n";
-                                cout<<"*=============You Won============*\n";
-                                cout<<"*=You Sunk All The Enemys Ships!=*\n";
-                                cout<<"*================================*\n";
-                                outFile.open("battleship.txt");
-                                outFile<<player<<" Won Last Game!\n";
-                                outFile.close();
+                        cheaker = cheakWinner(gamer, cpu, player);
+                        if( cheaker == true)
+                        {
                                 break;
                         }
                 }
-
         }
 
         return 0;
@@ -103,3 +83,33 @@ bool readyToPlay(string & name)
         }
 }
 
+bool cheakWinner(int playerNumberOfShips, int computerNumberOfShips, string name)
+{
+        ofstream outFile;
+        if( playerNumberOfShips  == 0)
+        {
+                cout<<"\n*=======================*\n";
+                cout<<"*========You Lost=======*\n";
+                cout<<"*=Better Luck Next Time=*\n";
+                cout<<"*=======================*\n";
+                outFile.open("battleship.txt");
+                outFile<<"The Computer Won Last Game!\n";
+                outFile.close();
+                return true;
+        }
+        else if( computerNumberOfShips  == 0)
+        {
+                cout<<"\n*================================*\n";
+                cout<<"*=============You Won============*\n";
+                cout<<"*=You Sunk All The Enemys Ships!=*\n";
+                cout<<"*================================*\n";
+                outFile.open("battleship.txt");
+                outFile<<name<<" Won Last Game!\n";
+                outFile.close();
+                return true;
+        }
+        else
+        {
+                return false;
+        }
+}
