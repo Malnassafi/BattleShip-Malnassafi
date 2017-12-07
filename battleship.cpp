@@ -6,107 +6,53 @@
 
 using namespace std;
 
-board::board()
+// Constructer 
+board::board() 
 { 
         computer = "Computer";
+        
+        setBoard(PLAYER_BOARD);
+        setBoard(COMPUTERS_BOARD);
+        setBoard(COMPUTER_DISPLAY_BOARD);
+}
 
-        PLAYER_BOARD[0][0] = '*';
+// A helper function that helps the constructer to set the boards to a default state
+void board::setBoard(char array[NUM_OF_ROWS][NUM_OF_COLS])
+{
+
+        array[0][0] = '*';
         //Coloums
-        PLAYER_BOARD[0][1] = '1';
-        PLAYER_BOARD[0][2] = '2';      
-        PLAYER_BOARD[0][3] = '3';              
-        PLAYER_BOARD[0][4] = '4';                      
-        PLAYER_BOARD[0][5] = '5';                              
-        PLAYER_BOARD[0][6] = '6';                                      
-        PLAYER_BOARD[0][7] = '7';                                              
-        PLAYER_BOARD[0][8] = '8';                                                      
-        PLAYER_BOARD[0][9] = '9';
-
+        array[0][1] = '1';
+        array[0][2] = '2';
+        array[0][3] = '3';
+        array[0][4] = '4';
+        array[0][5] = '5';
+        array[0][6] = '6';
+        array[0][7] = '7';
+        array[0][8] = '8';
+        array[0][9] = '9';
+        
         //Rows
-        PLAYER_BOARD[1][0] = '1';
-        PLAYER_BOARD[2][0] = '2';
-        PLAYER_BOARD[3][0] = '3';
-        PLAYER_BOARD[4][0] = '4';
-        PLAYER_BOARD[5][0] = '5';
-        PLAYER_BOARD[6][0] = '6';
-        PLAYER_BOARD[7][0] = '7';
-        PLAYER_BOARD[8][0] = '8';
-        PLAYER_BOARD[9][0] = '9';
-
-
-        for (int r = 1; r < NUM_OF_ROWS; r++)
-        {                               
-                for (int c = 1; c < NUM_OF_COLS; c++)
-                {                               
-                        PLAYER_BOARD[r][c] = IS_WATER;
-                }                                       
-        }
-
-        COMPUTERS_BOARD[0][0] = '*';
-        //Coloums
-        COMPUTERS_BOARD[0][1] = '1';
-        COMPUTERS_BOARD[0][2] = '2';
-        COMPUTERS_BOARD[0][3] = '3';
-        COMPUTERS_BOARD[0][4] = '4';
-        COMPUTERS_BOARD[0][5] = '5';
-        COMPUTERS_BOARD[0][6] = '6';
-        COMPUTERS_BOARD[0][7] = '7';
-        COMPUTERS_BOARD[0][8] = '8';
-        COMPUTERS_BOARD[0][9] = '9';
-
-        //Rows
-        COMPUTERS_BOARD[1][0] = '1';
-        COMPUTERS_BOARD[2][0] = '2';
-        COMPUTERS_BOARD[3][0] = '3';
-        COMPUTERS_BOARD[4][0] = '4';
-        COMPUTERS_BOARD[5][0] = '5';
-        COMPUTERS_BOARD[6][0] = '6';
-        COMPUTERS_BOARD[7][0] = '7';
-        COMPUTERS_BOARD[8][0] = '8';
-        COMPUTERS_BOARD[9][0] = '9';
-
-
+        array[1][0] = '1';
+        array[2][0] = '2';
+        array[3][0] = '3';
+        array[4][0] = '4';
+        array[5][0] = '5';
+        array[6][0] = '6';
+        array[7][0] = '7';
+        array[8][0] = '8';
+        array[9][0] = '9';
+      
         for (int r = 1; r < NUM_OF_ROWS; r++)
         {
                 for (int c = 1; c < NUM_OF_COLS; c++)
                 {
-                        COMPUTERS_BOARD[r][c] = IS_WATER;
+                        array[r][c] = IS_WATER;
                 }
-        }
-
-        COMPUTER_DISPLAY_BOARD[0][0] = '*';
-        //Coloums
-        COMPUTER_DISPLAY_BOARD[0][1] = '1';
-        COMPUTER_DISPLAY_BOARD[0][2] = '2';
-        COMPUTER_DISPLAY_BOARD[0][3] = '3';
-        COMPUTER_DISPLAY_BOARD[0][4] = '4';
-        COMPUTER_DISPLAY_BOARD[0][5] = '5';
-        COMPUTER_DISPLAY_BOARD[0][6] = '6';
-        COMPUTER_DISPLAY_BOARD[0][7] = '7';
-        COMPUTER_DISPLAY_BOARD[0][8] = '8';
-        COMPUTER_DISPLAY_BOARD[0][9] = '9';
-
-        //Rows
-        COMPUTER_DISPLAY_BOARD[1][0] = '1';
-        COMPUTER_DISPLAY_BOARD[2][0] = '2';
-        COMPUTER_DISPLAY_BOARD[3][0] = '3';
-        COMPUTER_DISPLAY_BOARD[4][0] = '4';
-        COMPUTER_DISPLAY_BOARD[5][0] = '5';
-        COMPUTER_DISPLAY_BOARD[6][0] = '6';
-        COMPUTER_DISPLAY_BOARD[7][0] = '7';
-        COMPUTER_DISPLAY_BOARD[8][0] = '8';
-        COMPUTER_DISPLAY_BOARD[9][0] = '9';
-
-
-        for (int r = 1; r < NUM_OF_ROWS; r++)
-        {                               
-                for (int c = 1; c < NUM_OF_COLS; c++)
-                {     
-                        COMPUTER_DISPLAY_BOARD[r][c] = IS_WATER;
-                }                       
         }
 }
 
+// A function that displays the boards
 void board::displayGameBoard( char array[NUM_OF_ROWS][NUM_OF_COLS] , string name )
 {
         cout<<"\n     - "<<name<<"'s Board -\n";
@@ -120,6 +66,7 @@ void board::displayGameBoard( char array[NUM_OF_ROWS][NUM_OF_COLS] , string name
         }
 }
 
+// A function that checks weather to display the player board or the computer board
 void board::displayBoard(string check)
 {
         if(check == playerName)
@@ -131,6 +78,8 @@ void board::displayBoard(string check)
                 displayGameBoard( COMPUTER_DISPLAY_BOARD , computer );
         }
 }
+
+// A function that counts the number of ships on a board
 int board::numOfShips(char array[NUM_OF_ROWS][NUM_OF_COLS])
 {
         int k = 0;
@@ -146,6 +95,7 @@ int board::numOfShips(char array[NUM_OF_ROWS][NUM_OF_COLS])
         return k;
 }
 
+// A function that checks weather to count the players number of ships or the computer number of ships
 int board::numberOfShips(string check)
 {
         int number;
@@ -161,11 +111,13 @@ int board::numberOfShips(string check)
         }
 }
 
+// A function that sets the player name to whatever the player inputed in main.cpp
 void board::setName(string name)
 {
         playerName = name;
 }
 
+// A function that checks weather its the player or computers turn to attack
 void board::attack(string check)
 {
         if(check == playerName)
@@ -178,6 +130,7 @@ void board::attack(string check)
         }
 }
 
+// A function that checks weather its the players or computers turn to place ships
 void board::placeShips(string check)
 {
         if(check == playerName)
@@ -190,6 +143,7 @@ void board::placeShips(string check)
         }
 }
 
+// A function that askes and places the ships where the player wants
 void board::placeYourShips(char array[NUM_OF_ROWS][NUM_OF_COLS])
 {
         int row, col, k = 0;
@@ -217,6 +171,7 @@ void board::placeYourShips(char array[NUM_OF_ROWS][NUM_OF_COLS])
 
 }
 
+// A function that randomly generates ships for the computer and places them
 void board::computerRandomGenerateShips(char array[NUM_OF_ROWS][NUM_OF_COLS])
 {
         int r, c, k = 0;
@@ -233,6 +188,7 @@ void board::computerRandomGenerateShips(char array[NUM_OF_ROWS][NUM_OF_COLS])
 
 }
 
+// A function that askes where the player would like to attack and attack the computers board
 void board::playerAttack(char array[NUM_OF_ROWS][NUM_OF_COLS])
 {
 
@@ -280,6 +236,7 @@ void board::playerAttack(char array[NUM_OF_ROWS][NUM_OF_COLS])
         }while( (array[rw][cl] != IS_HIT && array[rw][cl] != IS_MISSED) || k == 1);
 }
 
+// A functionn that randomly generates an attack on the players board
 void board::computerRandomGeneratedAttack(char array[NUM_OF_ROWS][NUM_OF_COLS])
 {
         cout<<"\n\nIts the Computers turn\n\n";
