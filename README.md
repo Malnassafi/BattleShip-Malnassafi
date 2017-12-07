@@ -9,7 +9,7 @@ BattleShip is a board game where you play against a computer. First you place yo
 # Data structures: 
 *
 # Functions:
-* Pass-by-refrence: [main.cpp on line 82](/main.cpp#L82)
+* Pass-by-refrence: [main.cpp on line 82](/main.cpp#L62)
 *
 # File I/O:
 *
