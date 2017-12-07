@@ -12,7 +12,7 @@ BattleShip is a board game where you play against a computer. First you place yo
 * If & else if : [battleship.cpp on lines 125 & 129](/battleship.cpp#L125) it would check the string, if it was the player it would run the if statement and if it was the computer it would run the else if statement.
 * If & else if : [battleship.cpp on lines 152 & 157](/battleship.cpp#L152) it would check the string, if it was the player it would run the if statement and if it was the computer it would run the else if statement.
 * If & else if : [battleship.cpp on lines 171 & 175](/battleship.cpp#L171) it would check the string, if it was the player it would run the if statement and if it was the computer it would run the else if statement.
-** If & else if : [battleship.cpp on lines 183 & 187](/battleship.cpp#L183) it would check the string, if it was the player it would run the if statement and if it was the computer it would run the else if statement.
+* If & else if : [battleship.cpp on lines 183 & 187](/battleship.cpp#L183) it would check the string, if it was the player it would run the if statement and if it was the computer it would run the else if statement.
 *
 *
 # Iteration:
