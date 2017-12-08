@@ -6,27 +6,37 @@
 #include<fstream>
 
 using namespace std;
-
+// NO MAGIC NUMBERS!
 const int MAX_NUM_OF_GUESSES = (NUM_OF_ROWS - 1) * (NUM_OF_COLS - 1);
-
+// PROTOTYPES
 bool readyToPlay(string &);
 bool cheakWinner(int, int, string);
 
+// main function starts
 int main()
 {
         srand( time (NULL) );
         board Player;
         ifstream inFile;
         string player, line, Cpu = "Computer";
-        bool play, cheaker;
+        bool play, cheaker, check;
         int gamer, cpu;
 
         inFile.open("battleship.txt");
-        while(getline(inFile,line) && line != "")
-        {       
-                cout<<"\n\n\n\n\n "<<line<<" \n\n\n\n\n";
+        check = inFile.is_open();
+        if(check == false)
+        {
+               inFile.open("battleship.txt");
+               inFile.close();
+        } 
+        else
+        {
+                while(getline(inFile,line) && line != "")
+                {              
+                        cout<<"\n\n\n\n\n "<<line<<" \n\n\n\n\n";
+                }
+                inFile.close();
         }
-        inFile.close();
         play = readyToPlay(player);
         if(play == true)
         {       
@@ -57,8 +67,9 @@ int main()
         }
 
         return 0;
-}
+} // main function ends
 
+// This function ask if the player is ready to play and if so it would ask his name and would return true to start the game
 bool readyToPlay(string & name)
 {
         char cheak;
@@ -83,6 +94,7 @@ bool readyToPlay(string & name)
         }
 }
 
+// This function will check who won weather it was the computer or the player
 bool cheakWinner(int playerNumberOfShips, int computerNumberOfShips, string name)
 {
         ofstream outFile;
