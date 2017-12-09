@@ -27,5 +27,5 @@ BattleShip is a board game where you play against a computer. First you place yo
 # Class:
 * Board class: [battleship.h on line 20](/battleship.h#L20)
 * Private section : [battleship.h on line 24](/battleship.h#L24) it has two strings declared in it which is the playername and computer and 3 Two dimensional array and a couple of private function that cant be accesed through int main but other public functions can use them.
-* Public section : [battleship.h on line 40](/battleship.h#L40) has a constracter and function that have access to the private secion of the board class that can be used in int main and change it in the private section.
+* Public section : [battleship.h on line 40](/battleship.h#L40) has a constracter and functions that have access to the private secion of the board class that can be used in int main and use the private section of the board class.
 
